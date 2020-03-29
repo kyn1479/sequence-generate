@@ -1,0 +1,36 @@
+project:
+  artifactId: sequencegeneratebydb
+  name: sequence-generate
+  description: 分布式系统流水号生成
+
+server:
+  port: ${tomcat.port:${SERVER_PORT:${PORT:8080}}}
+
+spring:
+  datasource:
+      url: jdbc:mysql://localhost:3306/sequence?characterEncoding=utf-8&serverTimezone=GMT%2B8
+      username: root
+      password: 123qwe
+      driverClassName: com.mysql.cj.jdbc.Driver
+      initialSize:  ${db.initialSize}
+      minIdle: ${db.minIdle}
+      maxActive:  ${db.maxActive}
+      maxWait: ${db.maxWait}
+      timeBetweenEvictionRunsMillis: ${db.timeBetweenEvictionRunsMillis}
+      minEvictableIdleTimeMillis: ${db.minEvictableIdleTimeMillis}
+      testWhileIdle: ${db.testWhileIdle}
+      testOnBorrow: ${db.testOnBorrow}
+      testOnReturn: ${db.testOnReturn}
+      validationQuery: ${db.validationQuery}
+      poolPreparedStatements: ${db.poolPreparedStatements}
+      maxOpenPreparedStatements: ${db.maxOpenPreparedStatements}
+      slowSql: ${db.slowSql}
+      filters: ${db.filters}
+
+mybatis:
+  mapper-locations:  # 所有的mapper映射文件
+      - classpath:mybatis/mapper/*.xml
+
+logging:
+  level:
+     com.kyn.sequencegenerate.dal: debug
